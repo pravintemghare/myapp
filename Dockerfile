@@ -1,7 +1,7 @@
 FROM java
 
-COPY target/mypapp-0.0.1.jar /mypapp-0.0.1.jar
+COPY target/myapp-1.0.0.jar /myapp-1.0.0.jar
 
 EXPOSE 8080:8080
 
-ENTRYPOINT ["java","-jar","/mypapp-0.0.1.jar"]
+ENTRYPOINT ["java","-jar","/myapp-1.0.0.jar"]
