@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        dockerRun = "docker run -itd -p 8800:8080 --network mynetwork --name myapp ptemghare/myapp"
+        dockerRun = "docker run -itd -p 8800:8080 --network wordpress --name myapp ptemghare/myapp"
     }
     stages {
         stage('GitCheckout') {
