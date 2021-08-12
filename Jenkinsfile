@@ -19,6 +19,8 @@ pipeline {
                     sh 'mvn clean'
                 }
             }
+        }
+        stage('ApplicationTest') {
             steps {
                 withMaven(maven : 'maven8') {
                     sh 'mvn test'
