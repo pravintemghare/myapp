@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        dockerRun = "docker run -itd -p 8080:8080 --network mynetwork --name myapp ptemghare/myapp"
-    }
     stages {
         stage('GitCheckout') {
             steps {
