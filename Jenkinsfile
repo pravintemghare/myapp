@@ -15,21 +15,21 @@ pipeline {
         }
         stage('ApplicationBuild') {
             steps {
-                withMaven(maven : 'maven8') {
+                withMaven(maven : 'mvn') {
                     sh 'mvn clean'
                 }
             }
         }
         stage('ApplicationTest') {
             steps {
-                withMaven(maven : 'maven8') {
+                withMaven(maven : 'mvn') {
                     sh 'mvn test'
                 }
             }
         }
         stage('ApplicationPackage') {
             steps {
-                withMaven(maven : 'maven8'){
+                withMaven(maven : 'mvn'){
                     sh 'mvn package'
                 }
             }
