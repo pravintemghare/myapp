@@ -20,7 +20,7 @@ pipeline {
         stage('ApplicationTest') {
             steps {
                 withMaven(maven : 'mvn') {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=MyApplication -Dsonar.host.url=http://10.160.0.5:8000/sonar -Dsonar.login=6a15052c17e50287f842f56ae27582790410376c'
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=myapp -Dsonar.host.url=http://10.160.0.5:8000/sonar -Dsonar.login=3822f9429562ad3862753769a301c9c03ee79f7a'
                 }
             }
         }
