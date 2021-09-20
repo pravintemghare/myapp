@@ -28,6 +28,7 @@ pipeline {
             steps {
                 withMaven(maven : 'mvn83'){
                     sh 'mvn package'
+                    sh 'echo $BUILD_NUMBER'
                 }
             }
         }
