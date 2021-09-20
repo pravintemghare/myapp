@@ -1,2 +1,2 @@
-# myapp1
+# myapp
 Spring Boot application code...
