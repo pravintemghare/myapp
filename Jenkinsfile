@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('GitCheckout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: tagVersion]],
-                  userRemoteConfigs: [[url: 'ssh://git@repo',
-                                       credentialsId: 'my-user-id']]
+                checkout([$class: 'GitSCM', branches: [[name: v2.0]],
+                  userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
+                                       credentialsId: 'GitHub']]
                 ])    
             }
         }
