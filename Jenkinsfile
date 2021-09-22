@@ -5,6 +5,7 @@ pipeline {
             steps {
                 git(
                     branch: 'v2.0',
+                    credentialsId: 'GitHub',
                     url: 'https://github.com/pravintemghare/myapp.git'
                 )    
             }
