@@ -4,7 +4,7 @@ pipeline {
         stage('GitCheckout') {
             steps {
                 git(
-                    branch: 'master',
+                    branch: 'v2.0',
                     credentialsId: 'github',
                     url: 'https://github.com/pravintemghare/myapp.git'
                 )    
