@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('GitCheckout') {
             steps {
-                checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: https://github.com/pravintemghare/myapp.git, credentialsId: GitHub]], branches: [[name: v3.0]]],poll: false
-                )    
+                checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: https://github.com/pravintemghare/myapp.git, credentialsId: GitHub]], branches: [[name: v3.0]]],poll: false  
             }
         }
         stage('ApplicationBuild') {
