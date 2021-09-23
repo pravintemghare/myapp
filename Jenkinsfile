@@ -34,5 +34,10 @@ pipeline {
                 }
             }
         }
+        stage('Ansible_Docker_build') {
+            steps {
+                ansiblePlaybook become: true, credentialsId: 'ansible_host', installation: 'ansible', inventory: '/opt/myapp/hosts', playbook: '/opt/myapp/create-docker-image.yml', vaultCredentialsId: 'ansible_vault_password'
+            }
+        }
     }
 }
