@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh "echo ${DATE_TAG}"
                 sh "echo ${BUILD_TAG}"
-                checkout([$class: 'GitSCM', branches: [[name: "myapp$(date +"%Y%m%d")"]],
+                checkout([$class: 'GitSCM', branches: [[name: 'myapp$(date +"%Y%m%d")']],
                   userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
                                        credentialsId: 'GitHub']]
                 ])    
