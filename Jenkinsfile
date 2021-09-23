@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('GitCheckout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: ${env.BUILD_TAG}]],
+                checkout([$class: 'GitSCM', branches: [[name: "${env.BUILD_TAG}"]],
                   userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
                                        credentialsId: 'GitHub']]
                 ])    
