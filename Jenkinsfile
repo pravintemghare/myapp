@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    environment {
+        BUILD_TAG = 'myapp$(date +"%Y%m%d")'
+    }
     stages {
         stage('GitCheckout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'v5.0']],
+                checkout([$class: 'GitSCM', branches: [[name: ${env.BUILD_TAG}]],
                   userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
                                        credentialsId: 'GitHub']]
                 ])    
