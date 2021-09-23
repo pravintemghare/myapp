@@ -1,15 +1,13 @@
 pipeline {
     agent any
     environment {
-        DATE_TAG = java.time.LocalDate.now()
-        currentDate = sh(returnStdout: true, script: 'date +%d%m%Y')
-       
+        DATE_TAG = sh(returnStdout: true, script: 'date +%d%m%Y')  
     }
+    
     stages {
         stage('GitCheckout') {
             steps {
-                sh 'echo ${currentDate}'
-                checkout([$class: 'GitSCM', branches: [[name: "myapp${currentDate}"]],
+                checkout([$class: 'GitSCM', branches: [[name: "myapp${DATE_TAG}"]],
                   userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
                                        credentialsId: 'GitHub']]
                 ])    
