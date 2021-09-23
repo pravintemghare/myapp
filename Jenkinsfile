@@ -1,13 +1,14 @@
 pipeline {
     agent any
     environment {
-        BUILD_TAG = 'myapp$(date +"%Y%m%d")'
-        DATE_TAG = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        BUILD_TAG = "sh "echo myapp$(date +"%Y%m%d")""
+        DATE_TAG = java.time.LocalDate.now()
     }
     stages {
         stage('GitCheckout') {
             steps {
                 sh "echo ${DATE_TAG}"
+                sh "echo ${BUILD_TAG}"
                 checkout([$class: 'GitSCM', branches: [[name: "${env.BUILD_TAG}"]],
                   userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
                                        credentialsId: 'GitHub']]
