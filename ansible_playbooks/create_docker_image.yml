@@ -1,0 +1,26 @@
+---
+- hosts: ansible_host
+  become: true
+  vars_files:
+    - docker-vault.yml
+
+  tasks:
+    - name: docker image build
+      command: docker build -t myapp .
+      args:
+        chdir: /opt/myapp
+
+    - name: tag docker image
+      command: "{{ item }}"
+      with_items:
+        - "docker tag myapp ptemghare/myapp:{{ build_tag }}"
+        - "docker tag myapp ptemghare/myapp:latest"
+
+    - name: docker login
+      command: docker login --username {{ username }} --password {{ password }} docker.io
+
+    - name: push docker image to hub.docker.com
+      command: "{{ item }}"
+      with_items:
+        - "docker push ptemghare/myapp:{{ build_tag }}"
+        - "docker push ptemghare/myapp:latest"
