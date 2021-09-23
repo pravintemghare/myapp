@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Ansible_Docker_build') {
             steps {
-                ansiblePlaybook become: true, credentialsId: 'ansible_host', extras: 'build_tag = $BUILD_ID', installation: 'ansible', inventory: 'ansible_playbooks/hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
+                ansiblePlaybook become: true, credentialsId: 'ansible_host', -e 'build_tag = $BUILD_ID', installation: 'ansible', inventory: 'ansible_playbooks/hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
             }
         }
     }
