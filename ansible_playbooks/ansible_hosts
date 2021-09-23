@@ -1,2 +1,5 @@
 [ansible_host]
 localhost
+
+[minikube_host]
+localhost
