@@ -9,7 +9,7 @@ pipeline {
         stage('GitCheckout') {
             steps {
                 sh 'echo ${currentDate}'
-                checkout([$class: 'GitSCM', branches: [[name: "myapp${DATE_TAG}"]],
+                checkout([$class: 'GitSCM', branches: [[name: "myapp${currentDate}"]],
                   userRemoteConfigs: [[url: 'https://github.com/pravintemghare/myapp.git',
                                        credentialsId: 'GitHub']]
                 ])    
