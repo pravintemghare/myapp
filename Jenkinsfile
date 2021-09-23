@@ -43,6 +43,7 @@ pipeline {
         stage('Ansible_MiniKube_Deploy') {
             steps {
                 sh 'sed -i "s|docker_tag|$BUILD_TAG|g" minikube_deployment/myapp-deployment.yml'
+                ansiblePlaybook credentialsId: 'ansible_host', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/myapp-minikube-deploy.yml'
             }
         }
     }
