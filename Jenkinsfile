@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        DATE_TAG = sh(returnStdout: true, script: 'date +%d%m%Y')  
+        DATE_TAG = sh(returnStdout: true, script: 'date +%d%m%Y')
+        BUILD_TAG = sh(returnStdout: true, script: 'git rev-parse HEAD  | head -c 6')  
     }
     
     stages {
@@ -36,7 +37,7 @@ pipeline {
         }
         stage('Ansible_Docker_build') {
             steps {
-                ansiblePlaybook become: true, credentialsId: 'ansible_host', extras: '-e build_tag=$BUILD_ID', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
+                ansiblePlaybook become: true, credentialsId: 'ansible_host', extras: '-e build_tag=$BUILD_TAG', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
             }
         }
     }
