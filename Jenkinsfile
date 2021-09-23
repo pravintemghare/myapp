@@ -40,9 +40,10 @@ pipeline {
                 ansiblePlaybook become: true, credentialsId: 'ansible_host', extras: '-e build_tag=$BUILD_TAG', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
             }
         }
-        stage('Ansible_MiniKube_Deploy')
+        stage('Ansible_MiniKube_Deploy') {
             steps {
                 sh 'sed -i "s|docker_tag|4sad21|g" /opt/myapp/myapp-deploy.yml'
             }
+        }
     }
 }
