@@ -35,14 +35,19 @@ pipeline {
                 }
             }
         }
-        stage('Ansible_Docker_build') {
+        stage('Ansible_Docker_Build') {
             steps {
                 ansiblePlaybook become: true, credentialsId: 'ansible_host', extras: '-e build_tag=$BUILD_TAG', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/create_docker_image.yml', vaultCredentialsId: 'ansible_vault_password'
             }
         }
-        stage('Ansible_MiniKube_Deploy') {
+        stage('Copy_MiniKube_Deployment_Files') {
             steps {
                 sh 'sed -i "s|docker_tag|$BUILD_TAG|g" minikube_deployment/myapp-deployment.yml'
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible_host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home//minikube//myapp', remoteDirectorySDF: false, removePrefix: 'minikube_deployment', sourceFiles: 'minikube_deployment/*yml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            }
+        }
+        stage('Ansible_MiniKube_Deploy') {
+            steps {
                 ansiblePlaybook credentialsId: 'ansible_host', installation: 'ansible', inventory: 'ansible_playbooks/ansible_hosts', playbook: 'ansible_playbooks/myapp-minikube-deploy.yml'
             }
         }
