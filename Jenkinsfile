@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Ansible_MiniKube_Deploy') {
             steps {
-                sh 'sed -i "s|docker_tag|4sad21|g" /opt/myapp/myapp-deploy.yml'
+                sh 'sed -i "s|docker_tag|$BUILD_TAG|g" minikube_deployment/myapp-deployment.yml'
             }
         }
     }
