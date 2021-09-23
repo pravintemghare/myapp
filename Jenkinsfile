@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        BUILD_TAG = 'sh "echo myapp$(date +"%Y%m%d")"'
+        BUILD_TAG = 'myapp$(date +"%Y%m%d")'
         DATE_TAG = java.time.LocalDate.now()
     }
     stages {
