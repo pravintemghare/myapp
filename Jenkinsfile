@@ -3,7 +3,7 @@ pipeline {
     environment {
         DATE_TAG = java.time.LocalDate.now()
         currentDate = sh(returnStdout: true, script: 'date +%Y-%m-%d')
-        NEW_TAG DATE_TAG = java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy")
+       
     }
     stages {
         stage('GitCheckout') {
