@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DATE_TAG = java.time.LocalDate.now()
-        currentDate = sh(returnStdout: true, script: 'date +%Y-%m-%d')
+        currentDate = sh(returnStdout: true, script: 'date +%d-%m-%Y')
        
     }
     stages {
