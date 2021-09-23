@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         BUILD_TAG = 'myapp$(date +"%Y%m%d")'
-        DATE_TAG = java.time.LocalDate.now()
+        DATE_TAG = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
     stages {
         stage('GitCheckout') {
