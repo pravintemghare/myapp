@@ -1,1 +1,1 @@
-java -jar /myapp-0.0.1.jar1
+java -jar /myapp-0.0.1.jar
