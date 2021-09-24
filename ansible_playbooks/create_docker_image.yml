@@ -8,7 +8,7 @@
     - name: docker image build
       command: docker build -t myapp .
       args:
-        chdir: /opt/myapp
+        chdir: "{{ workspace_dir }}"
 
     - name: tag docker image
       command: "{{ item }}"

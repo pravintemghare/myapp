@@ -5,7 +5,11 @@
 
   tasks:
   - name: Deploy for myapp
-    command: kubectl apply -f /home/minikube/myapp/myapp-deployment.yml
+    command: kubectl apply -f minikube_deployment/myapp-deployment.yml
+    args:
+      chdir: "{{ workspace_dir }}"
 
   - name: Service for my app
-    command: kubectl apply -f /home/minikube/myapp/myapp-service.yml
+    command: kubectl apply -f minikube_deployment/myapp-service.yml
+    args:
+      chdir: "{{ workspace_dir }}"    
