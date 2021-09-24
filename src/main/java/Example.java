@@ -9,7 +9,7 @@ public class Example {
 
     @RequestMapping("/")
     String home() {
-        return "Welcome to MiniKube Cluster!!!";
+        return "MiniKube Cluster Deployment Successful!!!";
     }
 
     public static void main(String[] args) throws Exception {
